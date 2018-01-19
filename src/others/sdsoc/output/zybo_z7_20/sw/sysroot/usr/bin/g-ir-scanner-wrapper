@@ -1,0 +1,5 @@
+#!/bin/sh
+# This prevents g-ir-scanner from writing cache data to /home/xbrbbot
+export GI_SCANNER_DISABLE_CACHE=1
+
+g-ir-scanner --use-binary-wrapper=/tmp/petalinux-yocto/yocto_sdk_full_2017.2/build/tmp/sysroots/zynq-generic/usr/bin/g-ir-scanner-qemuwrapper --use-ldd-wrapper=/tmp/petalinux-yocto/yocto_sdk_full_2017.2/build/tmp/sysroots/zynq-generic/usr/bin/g-ir-scanner-lddwrapper --add-include-path=/tmp/petalinux-yocto/yocto_sdk_full_2017.2/build/tmp/sysroots/zynq-generic/usr/share/gir-1.0 "$@"

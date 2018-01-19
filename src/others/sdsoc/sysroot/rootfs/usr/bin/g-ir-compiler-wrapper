@@ -1,0 +1,2 @@
+#!/bin/sh
+/tmp/petalinux-yocto/yocto_sdk_full_2017.2/build/tmp/sysroots/zynq-generic/usr/bin/g-ir-scanner-qemuwrapper /tmp/petalinux-yocto/yocto_sdk_full_2017.2/build/tmp/sysroots/zynq-generic/usr/bin/g-ir-compiler "$@"

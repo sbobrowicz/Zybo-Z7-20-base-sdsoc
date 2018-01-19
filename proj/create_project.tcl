@@ -2,7 +2,7 @@
 # If ::create_path global variable is set, the project is created under that path instead of the working dir
 
 # Project specific settings. These must be updated for each project.
-set proj_name "base-lin"
+set proj_name "zybo_z7_20"
 
 if {[info exists ::create_path]} {
 	set dest_dir $::create_path
@@ -12,10 +12,9 @@ if {[info exists ::create_path]} {
 puts "INFO: Creating new project in $dest_dir"
 cd $dest_dir
 
-
-
+# Don't set board part for SDSoC compatibility
 set part "xc7z020clg400-1"
-set brd_part "digilentinc.com:zybo-z7-20:part0:1.0"
+# set brd_part "digilentinc.com:zybo-z7-20:part0:1.0"
 
 # Set the reference directory for source file relative paths (by default the value is script directory path)
 set origin_dir ".."
@@ -42,7 +41,7 @@ set proj_dir [get_property directory [current_project]]
 set obj [get_projects $proj_name]
 set_property "default_lib" "xil_defaultlib" $obj
 set_property "part" $part $obj
-set_property "board_part" $brd_part $obj
+# set_property "board_part" $brd_part $obj
 set_property "simulator_language" "Mixed" $obj
 set_property "target_language" "VHDL" $obj
 

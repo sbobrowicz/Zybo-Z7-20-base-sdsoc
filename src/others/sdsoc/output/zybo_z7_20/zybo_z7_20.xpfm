@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdx:platform sdx:vendor="Digilent" sdx:library="sdx" sdx:name="zybo_z7_20" sdx:version="1.0" xmlns:sdx="http://www.xilinx.com/sdx">
+<sdx:description>Zybo Z7-20 Development board with support for HDMI input and HDMI output</sdx:description>
+<sdx:hardwarePlatforms>
+<sdx:hardwarePlatform sdx:path="hw" sdx:name="zybo_z7_20.dsa"/>
+</sdx:hardwarePlatforms>
+<sdx:softwarePlatforms>
+<sdx:softwarePlatform sdx:path="sw" sdx:name="zybo_z7_20.spfm"/>
+</sdx:softwarePlatforms>
+</sdx:platform>

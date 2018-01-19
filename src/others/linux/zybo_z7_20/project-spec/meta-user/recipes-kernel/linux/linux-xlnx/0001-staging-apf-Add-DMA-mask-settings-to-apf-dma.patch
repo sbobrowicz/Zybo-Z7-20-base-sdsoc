@@ -1,0 +1,27 @@
+From 76ba13d9ad667145cc134cc4c209b3f694ba328d Mon Sep 17 00:00:00 2001
+From: Michael Gill <gill@xilinx.com>
+Date: Tue, 6 Jun 2017 09:03:00 -0700
+Subject: [APF 1/1] staging: apf: Add DMA mask settings to apf dma
+
+Add DMA mask setting to apf dma to bypass iotlb configuration
+
+Signed-off-by: Michael Gill <gill@xilinx.com>
+---
+ drivers/staging/apf/xilinx-dma-apf.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/staging/apf/xilinx-dma-apf.c b/drivers/staging/apf/xilinx-dma-apf.c
+index a85ac28..52e4123 100644
+--- a/drivers/staging/apf/xilinx-dma-apf.c
++++ b/drivers/staging/apf/xilinx-dma-apf.c
+@@ -1056,6 +1056,7 @@ static int xdma_probe(struct platform_device *pdev)
+ 
+ 	/* Set this as configurable once HPC works */
+ 	arch_setup_dma_ops(&pdev->dev, 0, 0, NULL, false);
++	dma_set_mask(&pdev->dev, 0xFFFFFFFFFFFFFFFFull);
+ 
+ 	dma_config = (struct xdma_device_config *)xdev->dev->platform_data;
+ 	if (dma_config->channel_count < 1 || dma_config->channel_count > 2)
+-- 
+1.8.3.1
+

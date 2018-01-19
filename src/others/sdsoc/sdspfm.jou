@@ -1,0 +1,52 @@
+#(c) Copyright 2012-2016 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sdspfm 2017.1 SW Build 1972098 on Wed Aug 23 11:35:17 MDT 2017
+# Start time    : Tue Nov 21 01:58:02 PST 2017
+# Command line  : sdspfm -force -vendor Digilent -name zybo_z7_20 -version 1.0 -desc {Zybo Z7-20 Development board with support for HDMI input and HDMI output} -xpr ./proj_copy/zybo_z7_20/zybo_z7_20.xpr -bd zybo_z7_20.bd -pfmtcl ./hw_pfm_gen.tcl -samples ./samples/ -o ./output/ -prebuilt ./prebuilt/ -sds-cfg -arch cortex-a9 -os linux -name Linux -id linux -rt cpp -bif ./linux/linux.bif -readme ./boot_linux/generic.readme -boot ./boot_linux/ -inc ./include_linux/xfopencv/ -image ./linux/image/ -sds-end -sds-cfg -arch cortex-a9 -os standalone -name Standalone -id standalone -rt cpp -bif ./standalone/standalone.bif -readme ./boot_standalone/generic.readme -boot ./boot_standalone/ -lscript ./standalone/lscript.ld -sds-end -sds-cfg -arch cortex-a9 -os freertos -name FreeRTOS -id freertos -rt cpp -bif ./freertos/freertos.bif -readme ./boot_freertos/generic.readme -boot ./boot_freertos/ -lscript ./freertos/lscript.ld -sds-end
+# Log file      : /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/sdspfm.log
+# Journal file  : /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/sdspfm.jou
+#-----------------------------------------------------------
+
+# INFO: [SdsPfm 83-5429] Deleted existing output directory at '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20'
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/hw
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw
+# INFO: [SdsPfm 83-5411] Archiving vivado project
+cd /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil
+vivado -mode batch -notrace -source archive_project.tcl /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/proj_copy/zybo_z7_20/zybo_z7_20.xpr
+unzip -o /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/zybo_z7_20.xpr.zip
+mv zybo_z7_20 vivado
+/bin/chmod -R 777 vivado
+cd /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado
+xsltproc --stringparam P_PF_NM zybo_z7_20 -o zybo_z7_20.xpr /opt/Xilinx/SDx/2017.2/scripts/xsd/cleanup_xpr.xsl zybo_z7_20.xpr
+cd /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc
+# INFO: [SdsPfm 83-5430] Using DSA Flow
+# INFO: [SdsPfm 83-5409] Creating hardware platform XML file
+cd /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil
+vivado -mode batch -notrace -source create_hw_pfm.tcl /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.xpr
+cp zybo_z7_20.dsa /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/hw/zybo_z7_20.dsa
+cd /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc
+# INFO: [SdsPfm 83-5412] Generating software platform XML file
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux/boot
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux/qemu
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/boot_linux/generic.readme /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux/boot
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux/inc
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/include_linux/xfopencv /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux/inc/xfopencv
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/linux/image /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/linux/image
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/standalone
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/standalone/boot
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/standalone/qemu
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/boot_standalone/generic.readme /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/standalone/boot
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/standalone/lscript.ld /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/standalone/lscript.ld
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/freertos
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/freertos/boot
+mkdir /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/freertos/qemu
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/boot_freertos/generic.readme /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/freertos/boot
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/freertos/lscript.ld /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw/freertos/lscript.ld
+# INFO: [SdsPfm 83-5414] Creating SDx platform XML file
+# INFO: [SdsPfm 83-5423] Copying samples
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/samples /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/samples
+# INFO: [SdsPfm 83-5423] Copying prebuilt hardware files
+cp /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/prebuilt /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/output/zybo_z7_20/sw
+# sdspfm completed at Tue Nov 21 01:59:26 PST 2017

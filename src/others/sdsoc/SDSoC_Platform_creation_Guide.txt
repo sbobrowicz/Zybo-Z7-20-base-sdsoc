@@ -1,0 +1,96 @@
+===================================================================
+Notes on Creating an SDSoC Platform using these files
+===================================================================
+
+* Here is where all files come from (this is out of date):
+	*/*.bif -- handwritten
+	*/lscript.ld -- Generated from a simple helloworld project in sdk with heap and stack increased to 0x10000000 and 0x40000.
+	                Additional changes are also manually made to the freertos .ld (see a diff of the two files).
+	boot_*/fsbl.elf -- Included in the sdk folder of this project.
+	include_bsp -- from fsbl_bsp in sdk folder (currently not used)
+	lib -- /usr/lib of the petalinux rootfs. Hope to link directly to petalinux build dir at some point
+	include_linux -- /usr/include of the petalinux rootfs. Hope to link directly to petalinux build dir at some point
+
+* When I try to link to the .xpr in the proj folder, it throws an error saying that it can't find the .bd. I'm guessing this is because
+  the .bd is remotely located in the ../src/bd folder and it can't find it. For now, I am just manually archiving the project and
+  extracting it to SDSoC_Staging/proj_copy/ so that I can point the tool there instead. This is ridiculously redundant, because I think the
+  sdspfm utility already does this at least two more times when make is run.
+
+* The make file was made using the "sdspfm -gui" command to input all the needed information. The sdspfm project was then saved as the config.xml
+  found in this folder (using relative paths) and also exported as a Makefile. Note that several manual modifications have been made to the makefile 
+  since it was exported from the GUI, so if you open the GUI you should make these modifications before exporting the Makefile again. I believe the main
+  changes were adding the prebuilt folder and also making sure that the Linux OS is the first OS in the list (due to a bug described below).
+
+========================
+TODO and More Notes
+========================
+
+--Need to update config.xml to be in sync with the makefile
+--Used GUI to generate makefile, currently encountering warning that suggests the archive is not properly finding the boardfiles. Also, the problem 
+  specified here might be relevant, as that is the actual error I am receiving:
+
+  https://forums.xilinx.com/t5/SDSoC-Environment-and-reVISION/SDSoC-Platform-Utility-fails-to-generate-reference-design/td-p/801534
+
+  UPDATE: This bug was actually two bugs, I squashed them by doing two things:
+     1) Installed the zybo-z7 board files directly to /opt/Xilinx/SDx/2017.2/Vivado/data/boards/board_files. Removed copies of board files in proj_copy,
+        because they were not making it to the temporary archive created by spspfm anyways.
+     2) Deleted ~/.Xilinx/ . This fixed the issue in the forum above. This seems to lock SDSoC platform creation to Ubuntu for this build. It also means
+        I deleted my init.tcl script that set the boardrepo parameter, so I need to be aware that other installations of Vivado on this system no longer
+        will find board files.
+
+  I think the proper way to handle this problem is to document #2 in this document, but to undo #1 and remove the references to the board files in 
+  the vivado project, using the XDC to set constraints instead.
+
+--break-up step 2 below into a,b,c,... substeps
+--Looks like images/linux/rootfs.tar.gz is only created when doing initramfs, so I need to modify this document to just mount images/linux/rootfs.ext4 
+  instead and copy the sysroot from there, because that file. UPDATE: I did this, but it now seems to break some links in /bin and /sbin. That should be
+  irrelevant since this folder will only be used for cross-compiling and linking in libraries and includes. It also seems like the ZCU102 platform ran into
+  this same issue, because many of the broken links are also removed from their /bin folder.
+--Create README.txt that will ship with the completed platform and describes how to install the platform and also write the rootfs to the sd card. 
+--It seems the issue where you can't select the linux root file system in SDSoC occurs when the Linux operating system is not set as the default OS. This
+  is definitely a Xilinx-side bug, but I need to workaround and modify the Makefile so that it puts the Linux OS as the default configuration. I can probably
+  do this by just moving it ahead of the other OS's in the Makefile.
+--Need to ask Xilinx about the "fatal error: 'gnu/stubs-soft.h' file not found" error. It seems that SDSoC tries to compile with soft-float by default, but my
+  linux image only supports hard float. My current workaround is to add __ARM_PCS_VFP to the symbols for the SDSCC compiler and SDSC++ compiler using project
+  settings. UPDATE This error completely goes away when you don't specify root fs, but that means you can only link in basic libraries that are in your linux 
+  OS. It seems Xilinx currently works around this by specifying this symbol (and others) as well as some compiler/linker options, in the sample json files.
+--Looks like I need to have users of the platform run export SYSROOT=<Platform Location>zybo_z7_20/sw/sysroot before launching sdx. This might be a problem in Windows.
+--Need to add -maxthreads 8 -maxjobs 16 to Miscellanous in C/C++ build settings for SDSCC,SDS++, and SDS Linkerin order to speed up builds.
+
+===================================================================
+Instructions for Creating an SDSoC Platform using these files:
+===================================================================
+
+1) Open a terminal and source /opt/Xilinx/SDx/2017.2/settings64.sh
+2) If the Vivado IPI project was not changed since the last build you can skip this step. Otherwise, open project in vivado, archive project, 
+   extract to src/others/sdsoc/proj_copy/ (first delete the existing project found there). Then export the .hdf, and copy it to the ./prebuilt/ 
+   folder, renaming it so it replaces the existing .hdf there. Finally, copy the .hdf to a temporary folder, rename it to .zip, and extract 
+   the bitstream from the archive. Delete the temporary .zip and copy the .bit to the ./prebuilt folder, renaming it to bitstream.bit so it 
+   replaces the existing file found there. Finally, open proj_copy/zybo_z7_20/zybo_z7_20.xpr and remove the line that references "BoardPartRepoPaths". Save and
+   close the .xpr (if the line exists).
+
+3) If changes have been made to the petalinux project, or it has not been built yet since cloning this repo, the following must be done:
+   
+   a) cd into the petalinux project (../linux/zybo_z7_20)
+   b) Ensure the project has been built (petalinux-build) and BOOT.BIN has been generated (petalinux-package).
+   c) copy the rootfs archive to the sdsoc staging area:
+
+      cd ./src/others/linux/zybo_z7_20/
+      cp -f images/linux/rootfs.ext4 ../../sdsoc/sysroot/
+      cd ../../sdsoc/sysroot
+      rm -rf rootfs
+      sudo mount -t ext4 -o loop ./rootfs.ext4 ./mnt
+      cp -RLp ./mnt/. rootfs
+      sudo umount ./mnt
+      rm -f ./rootfs.ext4
+
+   d) Replace boot_linux/u-boot.elf with ../../linux/images/u-boot.elf
+   e) Replace linux/image/image.ub with ../../linux/images/image.ub
+      
+
+4) cd into src/others/sdsoc
+5) execute make
+6) Copy the contents of sysroot/rootfs to output/zybo_z7_20/sw/sysroot/
+7) create folder called sd_image in output/zybo_z7_20/sw/ and copy ./src/others/linux/zybo_z7_20/images/linux/rootfs.ext4 to it.
+8) Copy README.txt to the output/zybo_z7_20/ folder.
+9) The platform is now ready!

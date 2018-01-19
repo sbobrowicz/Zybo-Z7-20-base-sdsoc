@@ -1,0 +1,2 @@
+#!/bin/sh
+prelink-rtld --root=/tmp/petalinux-yocto/yocto_sdk_full_2017.2/build/tmp/sysroots/zynq-generic "$@"

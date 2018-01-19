@@ -1,0 +1,91 @@
+#-----------------------------------------------------------
+# Vivado v2017.2_sdx (64-bit)
+# SW Build 1972098 on Wed Aug 23 11:34:38 MDT 2017
+# IP Build 1971916 on Wed Aug 23 13:11:02 MDT 2017
+# Start of session at: Mon Nov 20 20:44:10 2017
+# Process ID: 29958
+# Current directory: /home/digilent/work
+# Command line: vivado
+# Log file: /home/digilent/work/vivado.log
+# Journal file: /home/digilent/work/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/proj/zybo_z7_20.xpr
+update_compile_order -fileset sources_1
+archive_project /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/proj_copy/zybo_z7_20.xpr.zip -force
+archive_project /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/proj_copy/zybo_z7_20.xpr.zip -force -exclude_run_results
+open_bd_design {/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/bd/zybo_z7_20/zybo_z7_20.bd}
+startgroup
+apply_board_connection -board_interface "" -ip_intf "/dvi2rgb_1/TMDS" -diagram "zybo_z7_20" 
+apply_board_connection -board_interface "" -ip_intf "/dvi2rgb_1/DDC" -diagram "zybo_z7_20" 
+endgroup
+undo
+startgroup
+apply_board_connection -board_interface "" -ip_intf "/dvi2rgb_1/TMDS" -diagram "zybo_z7_20" 
+apply_board_connection -board_interface "" -ip_intf "/dvi2rgb_1/DDC" -diagram "zybo_z7_20" 
+endgroup
+startgroup
+make_bd_intf_pins_external  [get_bd_intf_pins dvi2rgb_1/TMDS]
+endgroup
+set_property name hdmi_in [get_bd_intf_ports TMDS]
+startgroup
+apply_board_connection -board_interface "" -ip_intf "/rgb2dvi_1/TMDS" -diagram "zybo_z7_20" 
+endgroup
+startgroup
+make_bd_intf_pins_external  [get_bd_intf_pins rgb2dvi_1/TMDS]
+endgroup
+set_property name hdmi_out [get_bd_intf_ports TMDS]
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+startgroup
+make_bd_intf_pins_external  [get_bd_intf_pins dvi2rgb_1/DDC]
+endgroup
+set_property name hdmi_in_ddc [get_bd_intf_ports DDC]
+set_property name sysclk [get_bd_ports sys_clock]
+startgroup
+apply_board_connection -board_interface "" -ip_intf "/clk_wiz_0/clock_CLK_IN1" -diagram "zybo_z7_20" 
+endgroup
+set_property location {11 4426 213} [get_bd_cells clk_wiz_0]
+startgroup
+make_bd_pins_external  [get_bd_pins clk_wiz_0/clk_in1]
+endgroup
+set_property name sysclk [get_bd_ports clk_in1]
+startgroup
+set_property -dict [list CONFIG.GPIO_BOARD_INTERFACE {Custom} CONFIG.GPIO2_BOARD_INTERFACE {Custom}] [get_bd_cells axi_gpio_sw_btn]
+endgroup
+startgroup
+set_property -dict [list CONFIG.GPIO_BOARD_INTERFACE {Custom}] [get_bd_cells axi_gpio_led]
+endgroup
+set_property part xc7z020clg400-1 [current_project]
+config_ip_cache -import_from_project -use_cache_location /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/repo/cache
+update_ip_catalog
+config_ip_cache -import_from_project -use_cache_location /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/repo/cache
+update_ip_catalog
+report_ip_status -name ip_status 
+upgrade_ip [get_ips  {zybo_z7_20_proc_sys_reset_1_0 zybo_z7_20_axi_gpio_video_0 zybo_z7_20_proc_sys_reset_1_2 zybo_z7_20_rst_ps7_0_133M_0 zybo_z7_20_clk_wiz_0_0 zybo_z7_20_processing_system7_0_0 zybo_z7_20_proc_sys_reset_0_0 zybo_z7_20_axi_gpio_sw_btn_0 zybo_z7_20_rst_ps7_0_100M_0 zybo_z7_20_axi_gpio_led_0 zybo_z7_20_proc_sys_reset_1_1 zybo_z7_20_rgb2dvi_1_0 zybo_z7_20_dvi2rgb_1_0 zybo_z7_20_util_ds_buf_fclk1_0}] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips {zybo_z7_20_proc_sys_reset_1_0 zybo_z7_20_axi_gpio_video_0 zybo_z7_20_proc_sys_reset_1_2 zybo_z7_20_rst_ps7_0_133M_0 zybo_z7_20_clk_wiz_0_0 zybo_z7_20_processing_system7_0_0 zybo_z7_20_proc_sys_reset_0_0 zybo_z7_20_axi_gpio_sw_btn_0 zybo_z7_20_rst_ps7_0_100M_0 zybo_z7_20_axi_gpio_led_0 zybo_z7_20_proc_sys_reset_1_1 zybo_z7_20_rgb2dvi_1_0 zybo_z7_20_dvi2rgb_1_0 zybo_z7_20_util_ds_buf_fclk1_0}] -no_script -sync -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+wait_on_run impl_1
+open_run impl_1
+report_clock_interaction -delay_type min_max -significant_digits 3 -name timing_1
+open_bd_design {/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/bd/zybo_z7_20/zybo_z7_20.bd}
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+wait_on_run impl_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/bd/zybo_z7_20/zybo_z7_20.bd]
+refresh_design
+file copy -force /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/proj/zybo_z7_20.runs/impl_1/zybo_z7_20_wrapper.sysdef /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/hw_handoff/zybo_z7_20_wrapper.hdf
+
+archive_project /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/proj_copy/zybo_z7_20.xpr.zip -force -exclude_run_results

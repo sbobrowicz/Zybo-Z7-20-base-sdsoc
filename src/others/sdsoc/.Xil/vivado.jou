@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2017.2_sdx (64-bit)
+# SW Build 1972098 on Wed Aug 23 11:34:38 MDT 2017
+# IP Build 1971916 on Wed Aug 23 13:11:02 MDT 2017
+# Start of session at: Tue Nov 21 01:58:19 2017
+# Process ID: 14402
+# Current directory: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil
+# Command line: vivado -mode batch -notrace -source create_hw_pfm.tcl /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.xpr
+# Log file: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado.log
+# Journal file: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado.jou
+#-----------------------------------------------------------
+open_project /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.xpr
+source create_hw_pfm.tcl -notrace

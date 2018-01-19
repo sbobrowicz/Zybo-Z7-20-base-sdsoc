@@ -1,0 +1,83 @@
+#-----------------------------------------------------------
+# Vivado v2017.2_sdx (64-bit)
+# SW Build 1972098 on Wed Aug 23 11:34:38 MDT 2017
+# IP Build 1971916 on Wed Aug 23 13:11:02 MDT 2017
+# Start of session at: Tue Nov 21 01:58:19 2017
+# Process ID: 14402
+# Current directory: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil
+# Command line: vivado -mode batch -notrace -source create_hw_pfm.tcl /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.xpr
+# Log file: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado.log
+# Journal file: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /opt/Xilinx/SDx/2017.2/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/opt/Xilinx/SDx/2017.2/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+open_project /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.xpr
+INFO: [Project 1-313] Project file moved from '.' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.ipdefs/repo_0_0'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/SDx/2017.2/Vivado/data/ip'.
+WARNING: [IP_Flow 19-3664] IP 'zybo_z7_20_processing_system7_0_0' generated file not found '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.srcs/sources_1/bd/zybo_z7_20/ip/zybo_z7_20_processing_system7_0_0/sim/libps7.so'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'zybo_z7_20_processing_system7_0_0' generated file not found '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.srcs/sources_1/bd/zybo_z7_20/ip/zybo_z7_20_processing_system7_0_0/sim/libps7.dll'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'zybo_z7_20_processing_system7_0_0' generated file not found '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.srcs/sources_1/bd/zybo_z7_20/ip/zybo_z7_20_processing_system7_0_0/sim/libremoteport.so'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'zybo_z7_20_processing_system7_0_0' generated file not found '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.srcs/sources_1/bd/zybo_z7_20/ip/zybo_z7_20_processing_system7_0_0/sim/libremoteport.dll'. Please regenerate to continue.
+source create_hw_pfm.tcl -notrace
+Adding cell -- digilentinc.com:ip:axi_dynclk:1.0 - axi_dynclk_0
+Adding cell -- analog.com:user:axi_i2s_adi:1.0 - axi_i2s_adi_0
+Adding cell -- xilinx.com:ip:axi_vdma:6.3 - axi_vdma_0
+Adding cell -- xilinx.com:ip:axi_vdma:6.3 - axi_vdma_1
+Adding cell -- xilinx.com:ip:axis_subset_converter:1.1 - axis_subset_converter_in
+Adding cell -- xilinx.com:ip:axis_subset_converter:1.1 - axis_subset_converter_out
+Adding cell -- digilentinc.com:IP:PWM:2.0 - pwm_rgb
+Adding cell -- xilinx.com:ip:v_axi4s_vid_out:4.0 - v_axi4s_vid_out_0
+Adding cell -- xilinx.com:ip:v_tc:6.1 - v_tc_in
+Adding cell -- xilinx.com:ip:v_tc:6.1 - v_tc_out
+Adding cell -- xilinx.com:ip:v_vid_in_axi4s:4.0 - v_vid_in_axi4s_0
+Adding cell -- xilinx.com:ip:xadc_wiz:3.3 - xadc_wiz_0
+Adding cell -- xilinx.com:ip:xlconcat:2.1 - xlconcat_0
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_0
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_high
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_led
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_sw_btn
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_video
+Adding cell -- xilinx.com:ip:clk_wiz:5.4 - clk_wiz_0
+Adding cell -- digilentinc.com:ip:dvi2rgb:1.8 - dvi2rgb_1
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_fclk3
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_clkwiz0_clk2
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_clkwiz0_clk3
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding cell -- digilentinc.com:ip:rgb2dvi:1.4 - rgb2dvi_1
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_fclk0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_fclk1
+Adding cell -- xilinx.com:ip:util_ds_buf:2.1 - util_ds_buf_fclk1
+WARNING: [BD 41-1731] Type mismatch between connected pins: /axi_dynclk_0/LOCKED_O(undef) and /rgb2dvi_1/aRst_n(rst)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /clk_wiz_0/clk_out1(clk) and /axi_i2s_adi_0/DATA_CLK_I(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /dvi2rgb_1/aPixelClkLckd(undef) and /proc_sys_reset_0/aux_reset_in(rst)
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_register_slice:2.1 - m00_regslice
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_register_slice:2.1 - s01_regslice
+Adding cell -- xilinx.com:ip:axi_register_slice:2.1 - s00_regslice
+Successfully read diagram <zybo_z7_20> from BD file </home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/vivado/zybo_z7_20.srcs/sources_1/bd/zybo_z7_20/zybo_z7_20.bd>
+INFO: [Vivado 12-4895] Creating DSA: zybo_z7_20.dsa ...
+CRITICAL WARNING: [Project 1-655] Project does not have Board Part set. Board related data may be missing or incomplete in the generated DSA.
+WARNING: [Project 1-646] Board name, vendor and part not set in DSA.
+INFO: [Vivado-projutils-8] Tcl script 'rebuild.tcl' generated in output directory '/home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/.Xil/Vivado-14402-ubuntu/dsa/prj'
+
+INFO: [Vivado-projutils-17] Please note that the -paths_relative_to switch was specified, hence the project source files will be referenced wrt the
+ path that was specified with this switch. The 'origin_dir' variable is set to '.' in the generated script.
+
+INFO: [Vivado-projutils-11] If this project is being source controlled, then please ensure that the project source(s) are also part of this source
+ controlled data. The list of these local source(s) can be found in the generated script under the header section.
+
+write_project_tcl: Time (s): cpu = 00:00:49 ; elapsed = 00:00:53 . Memory (MB): peak = 1268.168 ; gain = 7.000 ; free physical = 5356 ; free virtual = 22817
+INFO: [Vivado 12-4896] Successfully created DSA: /home/digilent/work/git/Zybo-Z7-20-base-sdsoc/src/others/sdsoc/.Xil/zybo_z7_20.dsa
+write_dsa: Time (s): cpu = 00:00:51 ; elapsed = 00:00:55 . Memory (MB): peak = 1268.168 ; gain = 7.000 ; free physical = 5409 ; free virtual = 22817
+INFO: [Vivado 12-4468] Found XML metadata file: dsa.xml
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 21 01:59:26 2017...

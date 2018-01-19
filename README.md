@@ -1,9 +1,13 @@
-# Zybo Z7-20 Base Linux Design
+# Zybo Z7-20 Base SDSoC Design
 Created for Vivado 2017.2
+Targets SDSoC 2017.2
 
 This project is an internal project used by Digilent for the Zybo Z7-20 
-Petalinux Project. You are free to use it as you please, but it isn't 
-documented on our Wiki.
+SDSoC/reVISION platform. It contains the Vivado project, as well as an SDSoC
+platform generator project and Petalinux project in the ./src/others folder. This
+project can be used by advanced users who wish to make modifications to the SDSoC
+platform distributed by Digilent. Digilent does not provide documentation for doing 
+this, so the document titled UG1146 from Xilinx should be followed instead.
 
 ## Known Issues
 
@@ -12,3 +16,8 @@ documented on our Wiki.
    routed as a normal signal (not on the global clock network). This caused insanely long build times and failure to meet timing. The
    current work around is to manually insert a BUFG on FCLK1 using a util_ds_buf IP core.
 
+2. Audio is not tested
+
+## Questions for Xilinx
+
+1. Is it possible to get initramdisk rootfs mode to work when the ramdisk size is greater than 128 MB?
